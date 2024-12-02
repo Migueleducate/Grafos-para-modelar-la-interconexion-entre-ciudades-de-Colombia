@@ -1,0 +1,43 @@
+USE GrafoColombia;
+
+-- crear una conexion:
+DELIMITER //
+CREATE PROCEDURE CrearConexion(IN origen_id INT, IN destino_id INT)
+BEGIN
+    INSERT INTO Conexiones (origen, destino) VALUES (origen_id, destino_id);
+END //
+DELIMITER ;
+
+
+-- leer conexiones de una ciudad
+DELIMITER //
+CREATE PROCEDURE LeerConexiones(IN ciudad_id INT)
+BEGIN
+    SELECT C.nombre AS Ciudad_Origen, D.nombre AS Ciudad_Destino
+    FROM Conexiones
+    JOIN Ciudades C ON C.id = Conexiones.origen
+    JOIN Ciudades D ON D.id = Conexiones.destino
+    WHERE origen = ciudad_id;
+END //
+DELIMITER ;
+
+
+-- actualizar una coneccion
+DELIMITER //
+CREATE PROCEDURE ActualizarConexion(IN conexion_id INT, IN nuevo_destino INT)
+BEGIN
+    UPDATE Conexiones
+    SET destino = nuevo_destino
+    WHERE id = conexion_id;
+END //
+DELIMITER ;
+
+
+-- Eliminar una conexion
+DELIMITER //
+CREATE PROCEDURE EliminarConexion(IN conexion_id INT)
+BEGIN
+    DELETE FROM Conexiones WHERE id = conexion_id;
+END //
+DELIMITER ;
+

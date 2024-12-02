@@ -1,0 +1,41 @@
+CREATE DATABASE IF NOT EXISTS GrafoColombia;
+USE GrafoColombia;
+
+-- Tabla de Ciudades
+CREATE TABLE IF NOT EXISTS Ciudades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+-- Tabla de Conexiones
+CREATE TABLE IF NOT EXISTS Conexiones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    origen INT NOT NULL,
+    destino INT NOT NULL,
+    FOREIGN KEY (origen) REFERENCES Ciudades(id),
+    FOREIGN KEY (destino) REFERENCES Ciudades(id)
+);
+
+INSERT INTO Ciudades (nombre) VALUES 
+('Manizales'), ('Pereira'), ('Armenia'), ('Chinchiná'), ('Villamaría'),
+('Palestina'), ('Neira'), ('La Virginia'), ('Dosquebradas'), 
+('Santa Rosa de Cabal'), ('Cartago'), ('Calarcá'), ('Ciscasia'),
+('La Tebaida'), ('Montenegro');
+
+
+INSERT INTO Conexiones (origen, destino) VALUES 
+(1, 4), (1, 6), (1, 7), (1, 5), (1, 10), (1, 3), (1, 9), (1, 2), (1, 11), 
+(2, 8), (2, 11), (2, 3), (2, 13), (2, 9), (2, 1), 
+(3, 14), (3, 12), (3, 10), (3, 13), (3, 1), 
+(4, 1), 
+(5, 1),
+(6, 1), 
+(7, 2),
+(8, 2), (8, 11), 
+(9, 2), (9, 11), (9, 3), 
+(10, 8), (10, 11), (10, 3),
+(11, 8), 
+(12, 3), (12, 2), 
+(13, 3), (13, 2), 
+(14, 3),
+(15, 2); 
